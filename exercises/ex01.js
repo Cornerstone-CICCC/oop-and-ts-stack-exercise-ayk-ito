@@ -2,10 +2,21 @@
 // Remember the LIFO (Last-In, First-Out) rule
 // Make sure to build a temporary stack
 
-const Stack = require('../lib/Stack')
+const Stack = require("../lib/Stack");
 
 function removeEvenNums(stack) {
   // your code here
+  const tempStack = new Stack();
+  while (!stack.isEmpty()) {
+    const value = stack.pop();
+    if (value % 2 !== 0) {
+      tempStack.push(value);
+    }
+  }
+
+  while (!tempStack.isEmpty()) {
+    stack.push(tempStack.pop());
+  }
 }
 
 // Create stack
@@ -16,5 +27,5 @@ stack.push(1);
 stack.push(3);
 stack.push(6);
 
-removeEvenNums(stack)
-console.log(stack.printStack()) // [5, 1, 3]
+removeEvenNums(stack);
+console.log(stack.printStack()); // [5, 1, 3]
